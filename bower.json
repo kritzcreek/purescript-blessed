@@ -1,0 +1,16 @@
+{
+  "name": "purescript-blessed",
+  "version": "1.0.0",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-psc-ide": "^2.1.0"
+  }
+}
