@@ -19,6 +19,12 @@ exports.textbox = function(options) {
   };
 };
 
+exports.text = function(options) {
+  return function(){
+    return blessed.text(options);
+  };
+};
+
 exports.render = function(screen) {
   return function(){
     return screen.render();
