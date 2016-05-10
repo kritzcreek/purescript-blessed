@@ -7,21 +7,27 @@ exports.screen = function(options) {
   };
 };
 
-exports.form = function(options) {
+exports.formImpl = function(options) {
   return function(){
     return blessed.form(options);
   };
 };
 
-exports.textbox = function(options) {
+exports.textboxImpl = function(options) {
   return function(){
     return blessed.textbox(options);
   };
 };
 
-exports.text = function(options) {
+exports.textImpl = function(options) {
   return function(){
     return blessed.text(options);
+  };
+};
+
+exports.listImpl = function(options) {
+  return function(){
+    return blessed.list(options);
   };
 };
 
