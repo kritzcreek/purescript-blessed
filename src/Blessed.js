@@ -13,20 +13,78 @@ exports.form = function(options) {
   };
 };
 
+exports.textbox = function(options) {
+  return function(){
+    return blessed.textbox(options);
+  };
+};
+
 exports.render = function(screen) {
   return function(){
     return screen.render();
   };
 };
 
-exports.appendForm = function(screen) {
-  return function (form){
-    return function(){
-      return screen.append(form);
+exports.key = function(screen) {
+  return function(key){
+    return function(cb){
+      return function(){
+        return screen.key(key, cb);
+      };
     };
   };
 };
 
+exports.append = function(el1) {
+  return function (el2){
+    return function(){
+      return el1.append(el2);
+    };
+  };
+};
+
+exports.hide = function(el) {
+  return function(){
+    return el.hide();
+  };
+};
+
+exports.show = function(el) {
+  return function(){
+    return el.show();
+  };
+};
+
+exports.focus = function(el) {
+  return function(){
+    return el.focus();
+  };
+};
+
+exports.clearValue = function(el) {
+  return function(){
+    return el.clearValue();
+  };
+};
+
+exports.setValue = function(el) {
+  return function(s){
+    return function(){
+      return el.setValue(s);
+    };
+  };
+};
+
+exports.readInput = function(el) {
+  return function(cb){
+    return function(){
+      el.focus();
+      return el.readInput(function(){
+        cb(el.value)();
+      });
+    };
+  };
+};
 // // Create a screen object.
 // var screen = blessed.screen({
 //   smartCSR: true

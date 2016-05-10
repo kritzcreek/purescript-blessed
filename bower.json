@@ -11,6 +11,7 @@
     "output"
   ],
   "dependencies": {
-    "purescript-psc-ide": "^2.1.0"
+    "purescript-psc-ide": "^2.1.0",
+    "purescript-node-process": "^0.5.0"
   }
 }
