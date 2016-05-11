@@ -53,6 +53,9 @@ defaultNodeOptions =
 
 type ElementOptions a = Options (Element a)
 
+top :: forall a. Option (Element a) (Maybe Distance)
+top = optional (opt "top")
+
 bottom :: forall a. Option (Element a) (Maybe Distance)
 bottom = optional (opt "bottom")
 
@@ -171,6 +174,11 @@ foreign import listImpl
   . Foreign
   -> Eff (bless :: BLESS | e) (Element (List Unit))
 
+foreign import clearItems
+  :: forall a e
+  . Element (List a)
+  -> Eff (bless :: BLESS | e) Unit
+
 foreign import render
   :: forall e
   . Element Screen
@@ -182,11 +190,28 @@ foreign import append
   -> Element a2
   -> Eff (bless :: BLESS | e) Unit
 
+foreign import remove
+  :: forall a1 a2 e
+  . Element a1
+  -> Element a2
+  -> Eff (bless :: BLESS | e) Unit
+
+foreign import clearChildren
+  :: forall a1 e
+  . Element a1
+  -> Eff (bless :: BLESS | e) Unit
+
 foreign import key
   :: forall a e
   . Element a
   -> String
   -> Eff (bless :: BLESS | e) Unit
+  -> Eff (bless :: BLESS | e) Unit
+
+foreign import onSelect
+  :: forall a e
+  . Element (List a)
+  -> (Int -> Eff (bless :: BLESS | e) Unit)
   -> Eff (bless :: BLESS | e) Unit
 
 foreign import hide
@@ -204,7 +229,6 @@ foreign import focus
   . Element a
   -> Eff (bless :: BLESS | e) Unit
 
--- TODO: Interface "Input" implementieren
 foreign import readInput
   :: forall e
   . Element Textbox

@@ -31,6 +31,12 @@ exports.listImpl = function(options) {
   };
 };
 
+exports.clearItems = function(list) {
+  return function(){
+    return list.clearItems();
+  };
+};
+
 exports.render = function(screen) {
   return function(){
     return screen.render();
@@ -47,11 +53,35 @@ exports.key = function(screen) {
   };
 };
 
+exports.onSelect = function(list) {
+  return function(cb){
+    return function(){
+      return list.on("select", function(_, index){
+        cb(index)();
+      });
+    };
+  };
+};
+
 exports.append = function(el1) {
   return function (el2){
     return function(){
       return el1.append(el2);
     };
+  };
+};
+
+exports.remove = function(el1) {
+  return function(el2) {
+    return function(){
+      return el1.remove(el2);
+    };
+  };
+};
+
+exports.clearChildren = function(el1) {
+  return function(){
+    return el1.children = [];
   };
 };
 
