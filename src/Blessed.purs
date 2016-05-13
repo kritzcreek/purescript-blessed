@@ -71,6 +71,9 @@ height = optional (opt "height")
 content :: forall a. Option (Element a) (Maybe String)
 content = optional (opt "content")
 
+scrollable :: forall a. Option (Element a) (Maybe Boolean)
+scrollable = optional (opt "scrollable")
+
 style :: forall a. Option (Element a) (Maybe {fg :: String, bg :: String})
 style = optional (opt "style")
 
@@ -249,5 +252,11 @@ foreign import clearValue
 foreign import setValue
   :: forall e
   . Element Textbox
+  -> String
+  -> Eff (bless :: BLESS | e) Unit
+
+foreign import setContent
+  :: forall a e
+  . Element a
   -> String
   -> Eff (bless :: BLESS | e) Unit
