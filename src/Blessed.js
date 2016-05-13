@@ -37,6 +37,14 @@ exports.clearItems = function(list) {
   };
 };
 
+exports.setItems = function(list) {
+  return function(items){
+    return function(){
+      return list.setItems(items);
+    };
+  };
+};
+
 exports.render = function(screen) {
   return function(){
     return screen.render();

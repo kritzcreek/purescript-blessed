@@ -179,6 +179,12 @@ foreign import clearItems
   . Element (List a)
   -> Eff (bless :: BLESS | e) Unit
 
+foreign import setItems
+  :: forall a e
+  . Element (List a)
+  -> Array String
+  -> Eff (bless :: BLESS | e) Unit
+
 foreign import render
   :: forall e
   . Element Screen
